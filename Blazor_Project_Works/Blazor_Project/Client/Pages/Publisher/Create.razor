@@ -1,0 +1,48 @@
+﻿@page "/Publishers/Create"
+@inject HttpClient http
+@inject IToastService toastService
+<div class="row">
+    <div class="col-12">
+        @if (publisher is null)
+        {
+            <div>Loading...</div>
+        }
+        else
+        {
+            <EditForm Model="@publisher" OnValidSubmit="SavePublisher">
+                <h3>Create Publisher</h3>
+                <DataAnnotationsValidator />
+                <div class="form-group row mb-1">
+                    <label class="col-form-label col-2 text-end" for="@publisher.PublisherName">Publisher name</label>
+                    <div class="col-4">
+                        <InputText @bind-Value="publisher.PublisherName" class="form-control" />
+                        <ValidationMessage For="@(()=>publisher.PublisherName)" class="text-danger" />
+                    </div>
+                </div>
+               
+                <div class="form-group row mb-1">
+
+                    <div class="col-4 offset-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
+
+                    </div>
+                </div>
+            </EditForm>
+        }
+    </div>
+    <div class="col-12">
+        <a href="/Publishers/List" class="btn btn-link">Back to list</a>
+    </div>
+</div>
+@code {
+    private Publisher publisher = new();
+    private async Task SavePublisher()
+    {
+        var respose = await http.PostAsJsonAsync("api/Publishers", publisher);
+        if (respose.IsSuccessStatusCode)
+        {
+            toastService.ShowSuccess("Data saved successsfully", "Success");
+            publisher = new();
+        }
+    }
+}

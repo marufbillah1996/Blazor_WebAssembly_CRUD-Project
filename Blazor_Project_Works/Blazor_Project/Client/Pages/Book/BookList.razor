@@ -1,0 +1,70 @@
+﻿@page "/Books/List"
+@inject HttpClient http
+@inject IConfiguration config
+@inject IToastService toastService
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-end mb-1">
+            <NavLink class="btn btn-primary btn-sm" href="/Books/Create">Create New</NavLink>
+        </div>
+        @if (books is null)
+        {
+            <div>Loading</div>
+        }
+        else
+        {
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th></th>
+                        <th>Book Name</th>
+                        <th>Publisher Name</th>
+                        <th>Publish Date</th>
+                        <th>Price</th>
+                        <th>Available</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var b in books)
+                    {
+                        <tr>
+                            <td><img style="width:40px" src="/Uploads/@b.Picture" class="rounded-circle" /></td>
+                            <td>@b.BookName</td>
+                            <td>@b.PublisherName</td>
+                            <td>@b.PublishDate.ToString("yyyy-MM-dd")</td>
+                            <td>@b.Price.ToString("0.00")</td>
+                            <td>@(b.Available ? "Yes" : "No")</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="/Books/Edit/@b.BookID">Edit</a>
+                                <button @onclick="@( ()=>Delete(b.BookID))" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+@code {
+    private BookDTO[]? books;
+    protected async override Task OnInitializedAsync()
+    {
+        var data = await this.http.GetFromJsonAsync<BookDTO[]>($"api/Books/Include");
+        this.books = data;
+        //Debug.WriteLine(data?.Length);
+    }
+    private async Task Delete(int id)
+    {
+        var response = await http.DeleteAsync($"api/Books/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            toastService.ShowSuccess("Data deleted successfully", "Success");
+            books = await http.GetFromJsonAsync<BookDTO[]>("api/Books");
+        }
+        else
+        {
+            toastService.ShowError("Failed to delete data.", "Error");
+        }
+    }
+}

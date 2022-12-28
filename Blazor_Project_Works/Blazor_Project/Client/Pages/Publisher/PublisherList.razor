@@ -1,0 +1,49 @@
+﻿@page "/Publishers/List"
+@inject HttpClient http
+<div class="row">
+    <div class="col-12">
+        <h3>Publisher</h3>
+        <div class="d-flex justify-content-end mb-1">
+            <a href="/Publishers/Create" class="btn btn-primary btn-sm">Create</a>
+        </div>
+        @if (publishers is null)
+        {
+            <div>Loading...</div>
+        }
+        else
+        {
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Publisher name</th>
+                        <th>...</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var c in publishers)
+                    {
+                        <tr>
+                            <td>@c.PublisherName</td>
+                            <th>
+                                <a class="btn btn-success btn-sm" href="/Publishers/Edit/@c.PublisherID"><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-danger btn-sm @getDisabledClass(c.CanDelete)" href="/Publishers/delete/@c.PublisherID"><i class="bi bi-trash"></i></a>
+                            </th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+@code {
+    private PublisherDTO[]? publishers;
+    protected override async Task OnInitializedAsync()
+    {
+        publishers = await this.http.GetFromJsonAsync<PublisherDTO[]>("api/Publishers/DTO");
+    }
+    public string getDisabledClass(bool canDelete)
+    {
+        return canDelete ? "" : "disabled";
+    }
+}

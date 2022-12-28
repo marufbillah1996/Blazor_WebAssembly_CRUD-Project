@@ -1,0 +1,146 @@
+﻿@page "/Books/Edit/{id:int}"
+@using System.Net.Http.Headers;
+@inject HttpClient http
+@inject IToastService toastService
+<h3>Edit</h3>
+<div class="row">
+    <div class="col-12">
+        <EditForm Model="@book" OnValidSubmit="SaveBook">
+            <h3>Create Book</h3>
+            <DataAnnotationsValidator />
+            <div class="form-group row mb-1">
+                <label for="@book.BookName" class="col-form-label col-form-label-sm col-2 text-end">Book Name</label>
+                <div class="col-4">
+                    <InputText @bind-Value="book.BookName" class="form-control form-control-sm" />
+                    <ValidationMessage For="@(()=> book.BookName)" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="@book.PublishDate" class="col-form-label col-form-label-sm col-2 text-end">Publish Date</label>
+                <div class="col-4">
+                    <InputDate @bind-Value="book.PublishDate" Type="InputDateType.Date" class="form-control form-control-sm" />
+                    <ValidationMessage For="@(()=> book.PublishDate)" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="@book.Price" class="col-form-label col-form-label-sm col-2 text-end">Book Price</label>
+                <div class="col-4">
+                    <InputNumber @bind-Value="book.Price" class="form-control form-control-sm" />
+                    <ValidationMessage For="@(()=> book.Price)" class="text-danger" />
+                </div>
+            </div>
+            <div class="row form-group mb-1">
+                <label class="col-form-label col-form-label-sm col-2 text-end">Publisher Name</label>
+                <div class="col-4">
+                    <InputSelect @bind-Value="@book.PublisherID" class="form-select form-select-sm">
+                        <option value="">Select</option>
+                        @if (publishers != null)
+                        {
+                            foreach (var p in publishers)
+                            {
+                                <option value="@p.PublisherID">@p.PublisherName</option>
+                            }
+                        }
+                    </InputSelect>
+                    <ValidationMessage class="text-danger small" For="@(()=> book.PublisherID)" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="@book.Picture" class="col-form-label col-form-label-sm col-2 text-end">Name</label>
+                <div class="col-4">
+                    <InputFile OnChange="@OnInputFileChange" class="form-control form-control-sm" />
+                    <input type="hidden" @bind="book.Picture" class="form-control form-control-sm" />
+                    <ValidationMessage For="@(()=> book.Picture)" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="@book.Available" class="col-form-label col-form-label-sm col-2 text-end">Is Continuing</label>
+                <div class="col-4 pt-1">
+                    <InputCheckbox @bind-Value="@book.Available" />
+
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-4 offset-2">
+                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                </div>
+            </div>
+        </EditForm>
+    
+        <div class="col-3">
+            @if (book is not null)
+            {
+                <img src="/Uploads/@book.Picture" class="img-thumbnail" style="width:150px" />
+            }
+        </div>
+    </div>
+    <div class="col-12">
+        <a href="/Books/List" class="btn btn-link">Back to list</a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    private BookEditDTO? book = new();
+    private Publisher[]? publishers = default!;
+    IBrowserFile? selectedFile;
+    protected override async Task OnInitializedAsync()
+    {
+        book = await http.GetFromJsonAsync<BookEditDTO>($"api/Books/{id}");
+        var data = await this.http.GetFromJsonAsync<Publisher[]>($"api/Publishers");
+        this.publishers = data;
+    }
+    private void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File;
+
+
+        //this.StateHasChanged();
+    }
+    public async Task SaveBook()
+    {
+        if (selectedFile is not null)
+        {
+
+            if (book is not null)
+            {
+                var saveImage = await UploadItAsysnc();
+                book.Picture = saveImage.StoredFileName;
+
+            }
+        }
+        var response = await http.PutAsJsonAsync($"api/Books/{id}", book);
+        if (response.IsSuccessStatusCode)
+        {
+            toastService.ShowSuccess("Data updated successfully", "Success");
+        }
+        else
+        {
+            toastService.ShowError("Failed to update data.", "Error");
+        }
+    }
+    private async Task<ImageUpload> UploadItAsysnc()
+    {
+        using (var ms = new MemoryStream())
+        {
+            if (selectedFile is not null)
+            {
+                var content = new MultipartFormDataContent();
+                var fileContent = new StreamContent(selectedFile.OpenReadStream(long.MaxValue));
+
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(selectedFile.ContentType);
+                content.Add(content: fileContent, name: "\"file\"", fileName: selectedFile.Name);
+                var response = await http.PostAsync("api/Products/Upload", content);
+                var r = await response.Content.ReadFromJsonAsync<ImageUpload>();
+                return r == null ? new ImageUpload() : r;
+            }
+            else
+            {
+                return new ImageUpload();
+            }
+
+        }
+    }
+}

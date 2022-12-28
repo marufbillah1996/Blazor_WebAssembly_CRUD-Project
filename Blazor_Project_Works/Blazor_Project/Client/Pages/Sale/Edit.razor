@@ -1,0 +1,149 @@
+﻿@page "/Sales/Edit/{id:int}"
+@inject HttpClient http
+@inject IToastService toastService
+<div class="row">
+    <div class="col-12">
+        <EditForm Model="@sale" OnValidSubmit="SaveOrder">
+            <h3>Edit Sales</h3>
+            <DataAnnotationsValidator />
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2 text-end" for="@sale.CustomerID">Customer</label>
+                <div class="col-7">
+                    <InputSelect @bind-Value="sale.CustomerID" class="form-select">
+                        <option value="">Select</option>
+                        @if (customers is not null)
+                        {
+                            foreach (var c in customers)
+                            {
+                                <option value="@c.CustomerID">@c.CustomerName</option>
+                            }
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(()=>sale.CustomerID)" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2 text-end" for="@sale.SaleDate">Sale date</label>
+                <div class="col-7">
+                    <InputDate Type="InputDateType.Date" @bind-Value="@sale.SaleDate" class="form-control" />
+                    <ValidationMessage For="@(()=>sale.SaleDate)" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label class="col-form-label col-2 text-end" for="@sale.Status">Status</label>
+                <div class="col-7">
+                    <InputSelect @bind-Value="@sale.Status" class="form-select">
+                        @if (statusNames is not null)
+                        {
+                            foreach (var s in statusNames)
+                            {
+                                <option value="@s">@s</option>
+                            }
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(()=>sale.Status)" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-9">
+                    <div class="d-flex justify-content-between">
+                        <h4>Items</h4> <button @onclick="@AddItem" type="button" class="btn btn-primary btn-sm m-1"><i class="bi bi-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            @foreach (var oi in sale.SaleDetails)
+            {
+                int i = 0;
+                <div class="form-group row mb-1">
+                    <label class="col-form-label col-1 text-end" for="@sale.CustomerID">Product</label>
+                    <div class="col-3">
+                        <InputSelect @bind-Value="oi.BookID" class="form-select">
+                            <option value="">Select</option>
+                            @if (books is not null)
+                            {
+                                foreach (var p in books)
+                                {
+                                    <option value="@p.BookID">@p.BookName</option>
+                                }
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(()=>oi.BookID)" class="text-danger" />
+                    </div>
+                    <label class="col-form-label col-1 text-end" for="@oi.Quantity">Quantity</label>
+                    <div class="col-3">
+                        <InputNumber @bind-Value="oi.Quantity" class="form-control" />
+
+                        <ValidationMessage For="@(()=>oi.Quantity)" class="text-danger" />
+                    </div>
+                    <div class="col-1">
+                        <button @onclick="@(()=>RemoveItem(i++))" type="button" class="btn btn-secondary btn-sm">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+            <div class="form-group row mb-1">
+
+                <div class="col-9">
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">Save the order</button>
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+        <div class="col-12">
+            <a href="/Sales/List" class="btn btn-link">Back to list</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    private SaleEditDTO? sale = new();
+    private Customer[]? customers;
+    private Book[]? books;
+    private string[]? statusNames;
+    protected override async Task OnInitializedAsync()
+    {
+
+        statusNames = Enum.GetNames<Status>();
+        customers = await http.GetFromJsonAsync<Customer[]>("api/Customers");
+        books = await http.GetFromJsonAsync<Book[]>("api/Books");
+        sale = await http.GetFromJsonAsync<SaleEditDTO>($"api/Sales/{id}");
+        if (sale is not null)
+        {
+            SaleDetail[]? data = await http.GetFromJsonAsync<SaleDetail[]>($"api/Sales/OI/{id}");
+            if (data is not null)
+            {
+                foreach (var oi in data)
+                {
+                    sale.SaleDetails.Add(new SaleDetailEditDTO { SaleID = oi.SaleID, BookID = oi.BookID, Quantity = oi.Quantity, Price = 0 });
+                }
+            }
+        }
+    }
+    private void AddItem()
+    {
+        sale?.SaleDetails.Add(new SaleDetailEditDTO());
+    }
+    private void RemoveItem(int index)
+    {
+        if (sale is not null && sale.SaleDetails.Count > 1)
+            ((List<SaleDetailEditDTO>)sale.SaleDetails).RemoveAt(sale.SaleDetails.Count-1);
+    }
+    private async Task SaveOrder()
+    {
+        var response = await http.PutAsJsonAsync($"api/Sales/DTO/{id}", sale);
+        if (response.IsSuccessStatusCode)
+        {
+            toastService.ShowSuccess("Data saved successfully", "Success");
+        }
+        else
+        {
+            toastService.ShowError("Failed to data.", "Error");
+        }
+        await Task.CompletedTask;
+    }
+}

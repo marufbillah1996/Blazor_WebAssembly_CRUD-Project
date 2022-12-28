@@ -1,0 +1,97 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = Blazor_Project.Client
+build_property.RootNamespace = Blazor_Project.Client
+build_property.ProjectDir = C:\Users\maruf\Desktop\Blazor_Project_Works\Blazor_Project\Client\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\maruf\Desktop\Blazor_Project_Works\Blazor_Project\Client
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Book/BookList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va1xCb29rTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Book/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va1xDcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Book/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va1xFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Customer/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Customer/CustomerList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQ3VzdG9tZXJMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Customer/Delete.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRGVsZXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Customer/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Publisher/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGlzaGVyXENyZWF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Publisher/Delete.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGlzaGVyXERlbGV0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Publisher/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGlzaGVyXEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Publisher/PublisherList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGlzaGVyXFB1Ymxpc2hlckxpc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Sale/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZVxDcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Sale/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZVxEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Sale/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZVxFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Sale/SaleList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZVxTYWxlTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maruf/Desktop/Blazor_Project_Works/Blazor_Project/Client/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-fcdu8iax93

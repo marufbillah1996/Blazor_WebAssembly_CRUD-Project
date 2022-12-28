@@ -1,0 +1,105 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\1.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\1mjh3elb.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\1mjh3elb.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\2ogrnnyb.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\2ogrnnyb.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\4cx1qjd2.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\4cx1qjd2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\4kxzkoku.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\4kxzkoku.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\5djtht53.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\5djtht53.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\a1qnlugg.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\a1qnlugg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\aoy0jnpd.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\aoy0jnpd.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\chz03a3w.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\chz03a3w.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\h0tk4a1h.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\h0tk4a1h.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\jfyxx4y1.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\jfyxx4y1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\jxasatez.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\jxasatez.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\mn1fovbq.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\mn1fovbq.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\nql0ka12.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\nql0ka12.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\o4f0pcxu.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\o4f0pcxu.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\pbt5lbbh.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\pbt5lbbh.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\sxrqlzs2.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\sxrqlzs2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\tg0kkqbi.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\tg0kkqbi.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\uz4ayapu.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\uz4ayapu.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\wonfsadl.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\wonfsadl.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maruf\\Desktop\\Blazor_Project_Works\\Blazor_Project\\Server\\wwwroot\\Uploads\\zimwfrdc.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\zimwfrdc.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Blazor_Project.Server.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Blazor_Project.Server.props",
+      "PackagePath": "build\\Blazor_Project.Server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Blazor_Project.Server.props",
+      "PackagePath": "buildMultiTargeting\\Blazor_Project.Server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Blazor_Project.Server.props",
+      "PackagePath": "buildTransitive\\Blazor_Project.Server.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

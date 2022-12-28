@@ -1,0 +1,74 @@
+﻿@page "/Sales/List"
+@inject HttpClient http
+@inject IToastService toastService
+<div class="row">
+    <div class="col-12">
+        <h3>Sales</h3>
+        <div class="d-flex justify-content-end mb-1">
+            <a class="btn btn-primary btn-sm" href="/Sales/Create">Create New</a>
+        </div>
+        @if (sales is null)
+        {
+            <div>Loading..</div>
+        }
+        else
+        {
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Sale Date</th>
+                        <th>Customer</th>
+                        
+                        <th>Status</th>
+                        <th>Items</th>
+                        <th>Order Value</th>
+                        <th>Details</th>
+                        <th>...</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var o in sales)
+                    {
+                        <tr>
+                            <td>@o.SaleDate.ToString("yyyy-MM-dd")</td>
+                            <td>@o.CustomerName</td>
+                            
+                            <td>@o.Status</td>
+                            <td>@o.ItemCount</td>
+                            <td>@o.OrderValue.ToString("0.00")</td>
+                            <td>
+                                <a class="btn btn-link" href="/Sales/Details/@o.SaleID">Details</a>
+                            </td>
+                            <td>
+
+                                <a class="btn btn-primary btn-sm" href="/Sales/Edit/@o.SaleID">Edit</a>
+                                <button @onclick="@( ()=>Delete(o.SaleID))" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+@code {
+    private SaleViewDTO[]? sales;
+    protected override async Task OnInitializedAsync()
+    {
+        sales = await http.GetFromJsonAsync<SaleViewDTO[]>("api/Sales/DTO");
+    }
+    private async Task Delete(int id)
+    {
+        var response = await http.DeleteAsync($"api/Sales/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            toastService.ShowSuccess("Data deleted successfully", "Success");
+            sales = await http.GetFromJsonAsync<SaleViewDTO[]>("api/Sales");
+        }
+        else
+        {
+            toastService.ShowError("Failed to delete data.", "Error");
+        }
+    }
+}

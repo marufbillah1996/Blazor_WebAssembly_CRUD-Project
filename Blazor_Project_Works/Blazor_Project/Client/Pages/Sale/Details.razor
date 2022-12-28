@@ -1,0 +1,75 @@
+﻿@page "/Sales/Details/{id:int}"
+@inject HttpClient http
+<div class="row">
+    <div class="row">
+        <h3>Sale Details</h3>
+        @if (sale is null)
+        {
+            <div>Loading...</div>
+        }
+        else
+        {
+            <div class="row mb-1">
+                <label class="col-2 text-end">Sale Date</label>
+                <div class="col-10">
+                    @sale.SaleDate.ToString("yyyy-MM-dd")
+                </div>
+            </div>
+            <div class="row mb-1">
+                <label class="col-2 text-end">Customer</label>
+                <div class="col-10">
+                    @sale.CustomerName
+                </div>
+            </div>
+            <div class="row mb-1">
+                <label class="col-2 text-end">Status</label>
+                <div class="col-10">
+                    @sale.Status
+                </div>
+            </div>
+            @if (saledetails is not null)
+            {
+                <div><h4>Items</h4></div>
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Book</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Sub-total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var oi in saledetails)
+                        {
+                            <tr>
+                                <td>@oi.BookName</td>
+                                <td>@oi.Quantity</td>
+                                <td>@oi.Price</td>
+                                <td>@((oi.Price * oi.Quantity).ToString("0.00"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+    <div class="col-12">
+        <a href="/Sales/List" class="btn btn-link">Back to list</a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+    private SaleViewDTO? sale;
+    private SaleDetailViewDTO[]? saledetails;
+    protected override async Task OnInitializedAsync()
+    {
+        sale = await http.GetFromJsonAsync<SaleViewDTO>($"api/Sales/DTO/{id}");
+        if (sale is not null)
+        {
+            saledetails = await http.GetFromJsonAsync<SaleDetailViewDTO[]>($"api/Sales/Items/{id}");
+        }
+    }
+}
